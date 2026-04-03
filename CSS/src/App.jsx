@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import Header from './component/Header/Header'
+import Button from './component/Button/Button'
 
 
 
@@ -7,7 +9,8 @@ function App() {
 
   return (
     <>
-      <h1>shreyash</h1>
+      <Header/>
+      <Button/>
     </>
   )
 }

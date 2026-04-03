@@ -2,9 +2,10 @@
   margin: 0;
   padding: 0;
   background-color: rgb(72, 73, 74);
-
+  color: white;
 }
 
 html,body{
-  
+  width: 100%;
+  height: 100%;
 }
