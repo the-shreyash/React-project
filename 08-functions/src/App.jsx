@@ -27,7 +27,7 @@ function App() {
         <input type="text" name="" id="" placeholder='enter the value'
           onChange={function(elem){
             inputChange(elem.target.value)
-          }}
+          }} 
         />
       </div>
     </>
