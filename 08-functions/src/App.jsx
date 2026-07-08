@@ -20,7 +20,7 @@ function App() {
         <button onClick={()=>{console.log("hello")}}>shreyash</button>
         <br />
         <input onChange={(elm)=>console.log(elm.target.value)} type="text" 
-        placeholder='enter name ' />
+        placeholder='enter name '/>
 
         <br />
 
@@ -29,6 +29,8 @@ function App() {
             inputChange(elem.target.value)
           }} 
         />
+
+          <div className='box ' onMouseMove={function(elem){console.log(elem.clientY)}}>shreyash</div>
       </div>
     </>
   )
