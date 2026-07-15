@@ -13,13 +13,13 @@ function App() {
     e.preventDefault();
 
     const copyTask = [...task]
-    console.log(copyTask)
+    
 
     copyTask.push({title,details})
 
     setTask(copyTask)
 
-    console.log(copyTask)
+    
     // console.log(`from submitted by ${title}`)
     // alert(`from is submitted by ${title }`)
     settitle('')
@@ -33,9 +33,6 @@ function App() {
   const deleteNote= (idx)=>{
     console.log("notes deleted")
     const deleteNote = [...task]
-    console.log(deleteNote)
-    console.log(idx)
-
     deleteNote.splice(idx,1)
     setTask(deleteNote)
      
