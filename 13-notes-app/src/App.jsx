@@ -1,121 +1,110 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
+import { X } from 'lucide-react'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [title, settitle] = useState("")
+  const [details, setdetails] = useState('')
+
+  const [task, setTask] = useState([])
+
+  const submitHandler =(e)=>{
+    e.preventDefault();
+
+    const copyTask = [...task]
+    console.log(copyTask)
+
+    copyTask.push({title,details})
+
+    setTask(copyTask)
+
+    console.log(copyTask)
+    // console.log(`from submitted by ${title}`)
+    // alert(`from is submitted by ${title }`)
+    settitle('')
+    setdetails('')
+
+
+  } 
+
+  //function for delete notes
+
+  const deleteNote= (idx)=>{
+    console.log("notes deleted")
+    const deleteNote = [...task]
+    console.log(deleteNote)
+    console.log(idx)
+
+    deleteNote.splice(idx,1)
+    setTask(deleteNote)
+     
+  } 
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
+    <div className=' h-full  bg-black text-white  ' >
+      <form action="" className='flex justify-between p-10 items-start flex-col gap-4' 
+        onSubmit={(e)=>{submitHandler(e)}}>
+        <div className=' flex flex-col  p-10 items-start flex-col gap-4'>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          {/* first intput for heading*/} 
+          <input
+            type="text"
+            placeholder='enter notes heading'
+            className='px-5 py-2 w-1/2 border-5 rounded-xl outline-none 
+             text-teal-100  w-full' 
+            value={title}
+            
+            onChange={(e)=>{
+              settitle(e.target.value)
+            }}
+          />
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+            {/* detailed input*/}
+             
+          <input name=""
+            id=""
+            type='text'
+
+            placeholder='Enter Details'
+            className='px-5 py-2 w-1/2 border-5 rounded-xl outline-none text-teal-100 w-full'
+            value ={details}
+            
+            onChange ={(e) => {
+              
+              setdetails(e.target.value)
+            }}
+          />
+          
+
+          <button className='bg-white py-5 px-5 w-1/2 rounded-xl text-gray-500 w-full
+           active:bg-gray-500'
+          >Add note</button>
+
+        </div>
+        
+      </form> 
+      <div className="lg:w-1/2 lg:border-l-2 p-10">
+        <h1 className="text-4xl font-bold">Recent Note</h1>
+        <div className="flex flex-wrap items-start gap-5 mt-6 h-full overflow-auto">
+        {task.map(function(elem,idx){
+          return <div key={idx} className=" relative h-52 w-40 rounded-xl text-black p-4 bg-cover bg-[url('https://img.magnific.com/premium-vector/elegant-brown-aesthetic-note-sheet-document-printable_462511-696.jpg?w=360™')]">
+            <h2 className="absolute top-5 right-5  bg-red-400 rounded-full 
+              cursor-pointer active:scale-120 " onClick={()=>{
+                deleteNote(idx) 
+              }}>
+              <X size={20} color='#ffffff' strokeWidth={2.75}/>
+            </h2>
+            <h3 className='leading-tight text-2xl font-bold text-center  '>{elem.title}</h3>
+            <p className='mt-4 leading-tight font-medium text-gray-700™'>{elem.details}</p>
+          </div>
+        })}
+
+        </div>
+      </div>
+
+    </div>
   )
 }
 
