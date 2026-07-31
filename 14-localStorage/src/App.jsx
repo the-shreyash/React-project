@@ -27,14 +27,6 @@ function App() {
   console.log(getUser)
   
 
-
-
- 
- 
-  
-
-
-
   return (
     <>
       <h1>shryash</h1>
