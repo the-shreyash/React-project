@@ -1,0 +1,11 @@
+basic setup done
+
+
+nested routes
+
+dyanamic routes
+
+usenavigate
+
+404 page
+
